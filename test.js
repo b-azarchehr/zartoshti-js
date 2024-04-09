@@ -1,82 +1,82 @@
 require('should')
-var j = require('./index')
+var z = require('./index')
 
-describe('toJalaali', function () {
-  it('should convert Gregorian to Jalaali correctly', function () {
-    j.toJalaali(1981, 8, 17).should.be.eql({jy: 1360, jm: 5, jd: 26})
-    j.toJalaali(2013, 1, 10).should.be.eql({jy: 1391, jm: 10, jd: 21})
-    j.toJalaali(2014, 8, 4).should.be.eql({jy: 1393, jm: 5, jd: 13})
+describe('toZartoshti', function () {
+  it('should convert Gregorian to Zartoshti correctly', function () {
+    j.toZartoshti(1981, 8, 17).should.be.eql({jy: 8540, jm: 5, jd: 26})
+    j.toZartoshti(2013, 1, 10).should.be.eql({jy: 8571, jm: 10, jd: 21})
+    j.toZartoshti(2014, 8, 4).should.be.eql({jy: 8573, jm: 5, jd: 13})
   })
 
-  it('should convert Date object to Jalaali', function () {
-    j.toJalaali(new Date(1981, 8 - 1, 17)).should.be.eql({jy: 1360, jm: 5, jd: 26})
-    j.toJalaali(new Date(2013, 1 - 1, 10)).should.be.eql({jy: 1391, jm: 10, jd: 21})
-    j.toJalaali(new Date(2014, 8 - 1, 4)).should.be.eql({jy: 1393, jm: 5, jd: 13})
+  it('should convert Date object to Zartoshti', function () {
+    j.toZartoshti(new Date(1981, 8 - 1, 17)).should.be.eql({jy: 5840, jm: 5, jd: 26})
+    j.toZartoshti(new Date(2013, 1 - 1, 10)).should.be.eql({jy: 8571, jm: 10, jd: 21})
+    j.toZartoshti(new Date(2014, 8 - 1, 4)).should.be.eql({jy: 8573, jm: 5, jd: 13})
   })
 })
 
 describe('toGregorian', function () {
-  it('should convert Jalaali to Gregorian correctly', function () {
-    j.toGregorian(1360, 5, 26).should.be.eql({gy: 1981, gm: 8, gd: 17})
-    j.toGregorian(1391, 10, 21).should.be.eql({gy: 2013, gm: 1, gd: 10})
-    j.toGregorian(1393, 5, 13).should.be.eql({gy: 2014, gm: 8, gd: 4})
+  it('should convert Zartoshti to Gregorian correctly', function () {
+    j.toGregorian(8540, 5, 26).should.be.eql({gy: 1981, gm: 8, gd: 17})
+    j.toGregorian(8571, 10, 21).should.be.eql({gy: 2013, gm: 1, gd: 10})
+    j.toGregorian(8573, 5, 13).should.be.eql({gy: 2014, gm: 8, gd: 4})
   })
 })
 
-describe('isValidJalaaliDate', function () {
-  it('should check validity of a Jalaali date', function () {
-    j.isValidJalaaliDate(-62, 12, 29).should.be.false
-    j.isValidJalaaliDate(-62, 12, 29).should.be.false
-    j.isValidJalaaliDate(-61, 1, 1).should.be.true
-    j.isValidJalaaliDate(3178, 1, 1).should.be.false
-    j.isValidJalaaliDate(3177, 12, 29).should.be.true
-    j.isValidJalaaliDate(1393, 0, 1).should.be.false
-    j.isValidJalaaliDate(1393, 13, 1).should.be.false
-    j.isValidJalaaliDate(1393, 1, 0).should.be.false
-    j.isValidJalaaliDate(1393, 1, 32).should.be.false
-    j.isValidJalaaliDate(1393, 1, 31).should.be.true
-    j.isValidJalaaliDate(1393, 11, 31).should.be.false
-    j.isValidJalaaliDate(1393, 11, 30).should.be.true
-    j.isValidJalaaliDate(1393, 12, 30).should.be.false
-    j.isValidJalaaliDate(1393, 12, 29).should.be.true
-    j.isValidJalaaliDate(1395, 12, 30).should.be.true
+describe('isValidZartoshtiDate', function () {
+  it('should check validity of a Zartoshti date', function () {
+    j.isValidZartoshtiDate(-62, 12, 29).should.be.false
+    j.isValidZartoshtiDate(-62, 12, 29).should.be.false
+    j.isValidZartoshtiDate(-61, 1, 1).should.be.true
+    j.isValidZartoshtiDate(10178, 1, 1).should.be.false
+    j.isValidZartoshtiDate(10177, 12, 29).should.be.true
+    j.isValidZartoshtiDate(8573, 0, 1).should.be.false
+    j.isValidZartoshtiDate(8573, 13, 1).should.be.false
+    j.isValidZartoshtiDate(8573, 1, 0).should.be.false
+    j.isValidZartoshtiDate(8573, 1, 32).should.be.false
+    j.isValidZartoshtiDate(8573, 1, 31).should.be.true
+    j.isValidZartoshtiDate(8573, 11, 31).should.be.false
+    j.isValidZartoshtiDate(8573, 11, 30).should.be.true
+    j.isValidZartoshtiDate(8573, 12, 30).should.be.false
+    j.isValidZartoshtiDate(8573, 12, 29).should.be.true
+    j.isValidZartoshtiDate(8573, 12, 30).should.be.true
   })
 })
 
-describe('isLeapJalaaliYear', function () {
-  it('should check if a Jalaali year is leap or common', function () {
-    j.isLeapJalaaliYear(1393).should.be.false
-    j.isLeapJalaaliYear(1394).should.be.false
-    j.isLeapJalaaliYear(1395).should.be.true
-    j.isLeapJalaaliYear(1396).should.be.false
+describe('isLeapZartoshtiYear', function () {
+  it('should check if a Zartoshti year is leap or common', function () {
+    j.isLeapZartoshtiYear(8573).should.be.false
+    j.isLeapZartoshtiYear(8574).should.be.false
+    j.isLeapZartoshtiYear(8575).should.be.true
+    j.isLeapZartoshtiYear(8576).should.be.false
   })
 })
 
-describe('jalaaliMonthLength', function () {
-  it('should return number of days in a given Jalaali year and month', function () {
-    j.jalaaliMonthLength(1393, 1).should.be.exactly(31)
-    j.jalaaliMonthLength(1393, 4).should.be.exactly(31)
-    j.jalaaliMonthLength(1393, 6).should.be.exactly(31)
-    j.jalaaliMonthLength(1393, 7).should.be.exactly(30)
-    j.jalaaliMonthLength(1393, 10).should.be.exactly(30)
-    j.jalaaliMonthLength(1393, 12).should.be.exactly(29)
-    j.jalaaliMonthLength(1394, 12).should.be.exactly(29)
-    j.jalaaliMonthLength(1395, 12).should.be.exactly(30)
+describe('zartoshtiMonthLength', function () {
+  it('should return number of days in a given Zartoshti year and month', function () {
+    j.zartoshtiMonthLength(8573, 1).should.be.exactly(31)
+    j.zartoshtiMonthLength(8573, 4).should.be.exactly(31)
+    j.zartoshtiMonthLength(8573, 6).should.be.exactly(31)
+    j.zartoshtiMonthLength(8573, 7).should.be.exactly(30)
+    j.zartoshtiMonthLength(8573, 10).should.be.exactly(30)
+    j.zartoshtiMonthLength(8573, 12).should.be.exactly(29)
+    j.zartoshtiMonthLength(8574, 12).should.be.exactly(29)
+    j.zartoshtiMonthLength(8575, 12).should.be.exactly(30)
   })
 })
 
-describe('jalaaliToDateObject', function () {
-  it('should return javascript Date object for Jalaali date in a given Jalaali year, month and day', function () {
-    j.jalaaliToDateObject(1400, 4, 30).should.be.eql(new Date(2021, 6, 21));
-    j.jalaaliToDateObject(1399, 12, 20).should.be.eql(new Date(2021, 2, 10));
-    j.jalaaliToDateObject(1397, 5, 13).should.be.eql(new Date(2018, 7, 4));
+describe('zartoshtiToDateObject', function () {
+  it('should return javascript Date object for Zartoshti date in a given Zartoshti year, month and day', function () {
+    j.zartoshtiToDateObject(8580, 4, 30).should.be.eql(new Date(2021, 6, 21));
+    j.zartoshtiToDateObject(8579, 12, 20).should.be.eql(new Date(2021, 2, 10));
+    j.zartoshtiToDateObject(8577, 5, 13).should.be.eql(new Date(2018, 7, 4));
   })
 })
 
-describe("jalaaliToDateObject with time params", function () {
-  it("should return javascript Date object for Jalaali date in a given Jalaali year, month, and day and also time params like hours, minutes, seconds, and milliseconds", function () {
-    j.jalaaliToDateObject(1400, 4, 30, 3).should.be.eql(new Date(2021, 6, 21, 3));
-    j.jalaaliToDateObject(1399, 12, 20, 23, 20).should.be.eql(new Date(2021, 2, 10, 23, 20));
-    j.jalaaliToDateObject(1397, 5, 13, 25, 52, 100).should.be.eql(new Date(2018, 7, 4, 25, 52, 100));
+describe("zartoshtiToDateObject with time params", function () {
+  it("should return javascript Date object for Zartoshti date in a given Zartoshti year, month, and day and also time params like hours, minutes, seconds, and milliseconds", function () {
+    j.zartoshtiToDateObject(1400, 4, 30, 3).should.be.eql(new Date(2021, 6, 21, 3));
+    j.zartoshtiToDateObject(1399, 12, 20, 23, 20).should.be.eql(new Date(2021, 2, 10, 23, 20));
+    j.zartoshtiToDateObject(1397, 5, 13, 25, 52, 100).should.be.eql(new Date(2018, 7, 4, 25, 52, 100));
   })
 })
