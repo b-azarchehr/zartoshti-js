@@ -2,99 +2,99 @@
   Expose functions.
 */
 module.exports =
-  { toJalaali: toJalaali
+  { toZartoshti: toZartoshti
   , toGregorian: toGregorian
-  , isValidJalaaliDate: isValidJalaaliDate
-  , isLeapJalaaliYear: isLeapJalaaliYear
-  , jalaaliMonthLength: jalaaliMonthLength
-  , jalCal: jalCal
-  , j2d: j2d
-  , d2j: d2j
+  , isValidZartoshtiDate: isValidZartoshtiDate
+  , isLeapZartoshtiYear: isLeapZartoshtiYear
+  , ZartoshtiMonthLength: ZartoshtiMonthLength
+  , zarCal: zarCal
+  , z2d: z2d
+  , d2z: d2z
   , g2d: g2d
   , d2g: d2g
-  , jalaaliToDateObject: jalaaliToDateObject
-  , jalaaliWeek: jalaaliWeek
+  , ZartoshtiToDateObject: ZartoshtiToDateObject
+  , ZartoshtiWeek: ZartoshtiWeek
   }
 
 /*
-  Jalaali years starting the 33-year rule.
+  Zartoshti years starting the 33-year rule.
 */
 var breaks =  [ -61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210
   , 1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178
   ]
 
 /*
-  Converts a Gregorian date to Jalaali.
+  Converts a Gregorian date to Zartoshti.
 */
-function toJalaali(gy, gm, gd) {
+function toZartoshti(gy, gm, gd) {
   if (Object.prototype.toString.call(gy) === '[object Date]') {
     gd = gy.getDate()
     gm = gy.getMonth() + 1
     gy = gy.getFullYear()
   }
-  return d2j(g2d(gy, gm, gd))
+  return d2z(g2d(gy, gm, gd))
 }
 
 /*
-  Converts a Jalaali date to Gregorian.
+  Converts a Zartoshti date to Gregorian.
 */
-function toGregorian(jy, jm, jd) {
-  return d2g(j2d(jy, jm, jd))
+function toGregorian(zy, zm, zd) {
+  return d2g(z2d(zy, zm, zd))
 }
 
 /*
-  Checks whether a Jalaali date is valid or not.
+  Checks whether a Zartoshti date is valid or not.
 */
-function isValidJalaaliDate(jy, jm, jd) {
-  return  jy >= -61 && jy <= 3177 &&
-          jm >= 1 && jm <= 12 &&
-          jd >= 1 && jd <= jalaaliMonthLength(jy, jm)
+function isValidZartoshtiDate(zy, zm, zd) {
+  return  zy >= -61 && zy <= 3177 &&
+          zm >= 1 && zm <= 12 &&
+          zd >= 1 && zd <= ZartoshtiMonthLength(zy, zm)
 }
 
 /*
   Is this a leap year or not?
 */
-function isLeapJalaaliYear(jy) {
-  return jalCalLeap(jy) === 0
+function isLeapZartoshtiYear(zy) {
+  return zarCalLeap(zy) === 0
 }
 
 /*
-  Number of days in a given month in a Jalaali year.
+  Number of days in a given month in a Zartoshti year.
 */
-function jalaaliMonthLength(jy, jm) {
-  if (jm <= 6) return 31
-  if (jm <= 11) return 30
-  if (isLeapJalaaliYear(jy)) return 30
+function ZartoshtiMonthLength(zy, zm) {
+  if (zm <= 6) return 31
+  if (zm <= 11) return 30
+  if (isLeapZartoshtiYear(zy)) return 30
   return 29
 }
 
 /*
-    This function determines if the Jalaali (Persian) year is
+    This function determines if the Zartoshti (Persian) year is
     leap (366-day long) or is the common year (365 days)
 
-    @param jy Jalaali calendar year (-61 to 3177)
+    @param zy Zartoshti calendar year (-61 to 3177)
     @returns number of years since the last leap year (0 to 4)
  */
-function jalCalLeap(jy) {
+function zarCalLeap(zy) {
   var bl = breaks.length
-    , jp = breaks[0]
-    , jm
+    , zp = breaks[0]
+    , zm
     , jump
     , leap
     , n
     , i
 
-  if (jy < jp || jy >= breaks[bl - 1])
-    throw new Error('Invalid Jalaali year ' + jy)
+  if (zy < zp || zy >= breaks[bl - 1])
+    throw new Error('Invalid Zartoshti year ' + zy)
 
   for (i = 1; i < bl; i += 1) {
-    jm = breaks[i]
-    jump = jm - jp
-    if (jy < jm)
+    zm = breaks[i]
+    jump = zm - zp
+    if (zy < zm)
       break
-    jp = jm
+    zp = zm
   }
-  n = jy - jp
+  n = zy - zp
 
   if (jump - n < 6)
     n = n - jump + div(jump + 4, 33) * 33
@@ -107,26 +107,26 @@ function jalCalLeap(jy) {
 }
 
 /*
-  This function determines if the Jalaali (Persian) year is
+  This function determines if the Zartoshti (Persian) year is
   leap (366-day long) or is the common year (365 days), and
   finds the day in March (Gregorian calendar) of the first
-  day of the Jalaali year (jy).
+  day of the Zartoshti year (zy).
 
-  @param jy Jalaali calendar year (-61 to 3177)
+  @param zy Zartoshti calendar year (-61 to 3177)
   @param withoutLeap when don't need leap (true or false) default is false
   @return
     leap: number of years since the last leap year (0 to 4)
-    gy: Gregorian year of the beginning of Jalaali year
-    march: the March day of Farvardin the 1st (1st day of jy)
+    gy: Gregorian year of the beginning of Zartoshti year
+    march: the March day of Farvardin the 1st (1st day of zy)
   @see: http://www.astro.uni.torun.pl/~kb/Papers/EMP/PersianC-EMP.htm
   @see: http://www.fourmilab.ch/documents/calendar/
 */
-function jalCal(jy, withoutLeap) {
+function zarCal(zy, withoutLeap) {
   var bl = breaks.length
-    , gy = jy + 621
-    , leapJ = -14
-    , jp = breaks[0]
-    , jm
+    , gy = zy - 6559
+    , leapZ = -14
+    , zp = breaks[0]
+    , zm
     , jump
     , leap
     , leapG
@@ -134,31 +134,31 @@ function jalCal(jy, withoutLeap) {
     , n
     , i
 
-  if (jy < jp || jy >= breaks[bl - 1])
-    throw new Error('Invalid Jalaali year ' + jy)
+  if (zy < zp || zy >= breaks[bl - 1])
+    throw new Error('Invalid Zartoshti year ' + zy)
 
-  // Find the limiting years for the Jalaali year jy.
+  // Find the limiting years for the Zartoshti year zy.
   for (i = 1; i < bl; i += 1) {
-    jm = breaks[i]
-    jump = jm - jp
-    if (jy < jm)
+    zm = breaks[i]
+    jump = zm - zp
+    if (zy < zm)
       break
-    leapJ = leapJ + div(jump, 33) * 8 + div(mod(jump, 33), 4)
-    jp = jm
+    leapZ = leapZ + div(jump, 33) * 8 + div(mod(jump, 33), 4)
+    zp = zm
   }
-  n = jy - jp
+  n = zy - zp
 
   // Find the number of leap years from AD 621 to the beginning
-  // of the current Jalaali year in the Persian calendar.
-  leapJ = leapJ + div(n, 33) * 8 + div(mod(n, 33) + 3, 4)
+  // of the current Zartoshti year in the Persian calendar.
+  leapZ = leapZ + div(n, 33) * 8 + div(mod(n, 33) + 3, 4)
   if (mod(jump, 33) === 4 && jump - n === 4)
-    leapJ += 1
+    leapZ += 1
 
   // And the same in the Gregorian calendar (until the year gy).
   leapG = div(gy, 4) - div((div(gy, 100) + 1) * 3, 4) - 150
 
   // Determine the Gregorian date of Farvardin the 1st.
-  march = 20 + leapJ - leapG
+  march = 20 + leapZ - leapG
 
   // return with gy and march when we don't need leap
   if (withoutLeap) return { gy: gy, march: march };
@@ -179,63 +179,63 @@ function jalCal(jy, withoutLeap) {
 }
 
 /*
-  Converts a date of the Jalaali calendar to the Julian Day number.
+  Converts a date of the Zartoshti calendar to the Julian Day number.
 
-  @param jy Jalaali year (1 to 3100)
-  @param jm Jalaali month (1 to 12)
-  @param jd Jalaali day (1 to 29/31)
+  @param zy Zartoshti year (1 to 3100)
+  @param zm Zartoshti month (1 to 12)
+  @param zd Zartoshti day (1 to 29/31)
   @return Julian Day number
 */
-function j2d(jy, jm, jd) {
-  var r = jalCal(jy, true)
-  return g2d(r.gy, 3, r.march) + (jm - 1) * 31 - div(jm, 7) * (jm - 7) + jd - 1
+function j2d(zy, zm, zd) {
+  var r = zarCal(zy, true)
+  return g2d(r.gy, 3, r.march) + (zm - 1) * 31 - div(zm, 7) * (zm - 7) + zd - 1
 }
 
 /*
-  Converts the Julian Day number to a date in the Jalaali calendar.
+  Converts the Julian Day number to a date in the Zartoshti calendar.
 
-  @param jdn Julian Day number
+  @param zdn Julian Day number
   @return
-    jy: Jalaali year (1 to 3100)
-    jm: Jalaali month (1 to 12)
-    jd: Jalaali day (1 to 29/31)
+    zy: Zartoshti year (1 to 3100)
+    zm: Zartoshti month (1 to 12)
+    zd: Zartoshti day (1 to 29/31)
 */
-function d2j(jdn) {
-  var gy = d2g(jdn).gy // Calculate Gregorian year (gy).
-    , jy = gy - 621
-    , r = jalCal(jy, false)
-    , jdn1f = g2d(gy, 3, r.march)
-    , jd
-    , jm
+function d2j(zdn) {
+  var gy = d2g(zdn).gy // Calculate Gregorian year (gy).
+    , zy = gy + 6559
+    , r = zarCal(zy, false)
+    , zdn1f = g2d(gy, 3, r.march)
+    , zd
+    , zm
     , k
 
   // Find number of days that passed since 1 Farvardin.
-  k = jdn - jdn1f
+  k = zdn - zdn1f
   if (k >= 0) {
     if (k <= 185) {
       // The first 6 months.
-      jm = 1 + div(k, 31)
-      jd = mod(k, 31) + 1
-      return  { jy: jy
-              , jm: jm
-              , jd: jd
+      zm = 1 + div(k, 31)
+      zd = mod(k, 31) + 1
+      return  { zy: zy
+              , zm: zm
+              , zd: zd
               }
     } else {
       // The remaining months.
       k -= 186
     }
   } else {
-    // Previous Jalaali year.
-    jy -= 1
+    // Previous Zartoshti year.
+    zy -= 1
     k += 179
     if (r.leap === 1)
       k += 1
   }
-  jm = 7 + div(k, 30)
-  jd = mod(k, 30) + 1
-  return  { jy: jy
-          , jm: jm
-          , jd: jd
+  zm = 7 + div(k, 30)
+  zd = mod(k, 30) + 1
+  return  { zy: zy
+          , zm: zm
+          , zd: zd
           }
 }
 
@@ -261,23 +261,23 @@ function g2d(gy, gm, gd) {
 
 /*
   Calculates Gregorian and Julian calendar dates from the Julian Day number
-  (jdn) for the period since jdn=-34839655 (i.e. the year -100100 of both
+  (zdn) for the period since zdn=-34839655 (i.e. the year -100100 of both
   calendars) to some millions years ahead of the present.
 
-  @param jdn Julian Day number
+  @param zdn Julian Day number
   @return
     gy: Calendar year (years BC numbered 0, -1, -2, ...)
     gm: Calendar month (1 to 12)
     gd: Calendar day of the month M (1 to 28/29/30/31)
 */
-function d2g(jdn) {
+function d2g(zdn) {
   var j
     , i
     , gd
     , gm
     , gy
-  j = 4 * jdn + 139361631
-  j = j + div(div(4 * jdn + 183187720, 146097) * 3, 4) * 4 - 3908
+  j = 4 * zdn + 139361631
+  j = j + div(div(4 * zdn + 183187720, 146097) * 3, 4) * 4 - 3908
   i = div(mod(j, 1461), 4) * 5 + 308
   gd = div(mod(i, 153), 5) + 1
   gm = mod(div(i, 153), 12) + 1
@@ -290,44 +290,44 @@ function d2g(jdn) {
 
 /**
  * Return Saturday and Friday day of current week(week start in Saturday)
- * @param {number} jy jalaali year
- * @param {number} jm jalaali month
- * @param {number} jd jalaali day
+ * @param {number} zy Zartoshti year
+ * @param {number} zm Zartoshti month
+ * @param {number} zd Zartoshti day
  * @returns Saturday and Friday of current week
  */
-function jalaaliWeek(jy, jm, jd) {
-  var dayOfWeek = jalaaliToDateObject(jy, jm, jd).getDay();
+function ZartoshtiWeek(zy, zm, zd) {
+  var dayOfWeek = ZartoshtiToDateObject(zy, zm, zd).getDay();
 
   var startDayDifference = dayOfWeek == 6 ? 0 : -(dayOfWeek+1);
   var endDayDifference = 6+startDayDifference;
 
   return {
-    saturday: d2j(j2d(jy, jm, jd+startDayDifference)),
-    friday: d2j(j2d(jy, jm, jd+endDayDifference))
+    saturday: d2j(j2d(zy, zm, zd+startDayDifference)),
+    friday: d2j(j2d(zy, zm, zd+endDayDifference))
   }
 }
 
 /**
- * Convert Jalaali calendar dates to javascript Date object
- * @param {number} jy jalaali year
- * @param {number} jm jalaali month
- * @param {number} jd jalaali day
+ * Convert Zartoshti calendar dates to javascript Date object
+ * @param {number} zy Zartoshti year
+ * @param {number} zm Zartoshti month
+ * @param {number} zd Zartoshti day
  * @param {number} [h] hours
  * @param {number} [m] minutes
  * @param {number} [s] seconds
  * @param {number} [ms] milliseconds
- * @returns Date object of the jalaali calendar dates
+ * @returns Date object of the Zartoshti calendar dates
  */
-function jalaaliToDateObject(
-  jy,
-  jm,
-  jd,
+function ZartoshtiToDateObject(
+  zy,
+  zm,
+  zd,
   h,
   m,
   s,
   ms
 ) {
-  var gregorianCalenderDate = toGregorian(jy, jm, jd);
+  var gregorianCalenderDate = toGregorian(zy, zm, zd);
 
   return new Date(
     gregorianCalenderDate.gy,

@@ -1,4 +1,4 @@
-var j = require('./index')
+var z = require('./index')
   , n = 1000000
 
 console.log('Benchmarking, %s times', n)
@@ -7,16 +7,16 @@ var lap = stopWatch('toGregorian')
 toGregorianBench()
 lap()
 
-lap = stopWatch('toJalaali')
-toJalaaliBench()
+lap = stopWatch('toZartoshti')
+toZartoshtiBench()
 lap()
 
-lap = stopWatch('isLeapJalaaliYear')
-isLeapJalaaliYearBench()
+lap = stopWatch('isLeapZartoshtiYear')
+isLeapZartoshtiYearBench()
 lap();
 
-lap = stopWatch('isValidJalaaliDate')
-isValidJalaaliDateBench()
+lap = stopWatch('isValidZartoshtiDate')
+isValidZartoshtiDateBench()
 lap();
 
 function stopWatch(name) {
@@ -29,9 +29,9 @@ function stopWatch(name) {
 
 function toGregorianBench() {
   var count = n
-    , f = j.toGregorian
+    , f = z.toGregorian
   while (true)
-    for (var y = 1; y <= 3000; y += 1)
+    for (var y = 1; y <= 10000; y += 1)
       for (var m = 1; m <= 12; m += 1)
         for (var d = 1; d <= 30; d += 1) {
           f(y, m, d)
@@ -39,11 +39,11 @@ function toGregorianBench() {
         }
 }
 
-function toJalaaliBench() {
+function toZartoshtiBench() {
   var count = n
-    , f = j.toJalaali
+    , f = z.toZartoshti
   while (true)
-    for (var y = 560; y <= 3560; y += 1)
+    for (var y = 560; y <= 10560; y += 1)
       for (var m = 1; m <= 12; m += 1)
         for (var d = 1; d <= 30; d += 1) {
           f(y, m, d)
@@ -51,21 +51,21 @@ function toJalaaliBench() {
         }
 }
 
-function isLeapJalaaliYearBench() {
+function isLeapZartoshtiYearBench() {
   var count = n
-    , f = j.isLeapJalaaliYear
+    , f = z.isLeapZartoshtiYear
   while (true)
-    for (var y = 1; y <= 3000; y += 1) {
+    for (var y = 1; y <= 10000; y += 1) {
       f(y)
       if (--count === 0) return
     }
 }
 
-function isValidJalaaliDateBench() {
+function isValidZartoshtiDateBench() {
   var count = n
-    , f = j.isValidJalaaliDate
+    , f = z.isValidZartoshtiDate
   while (true)
-    for (var y = 1; y <= 3000; y += 1)
+    for (var y = 1; y <= 10000; y += 1)
       for (var m = 1; m <= 13; m += 1)
         for (var d = 1; d <= 32; d += 1) {
           f(y, m, d)

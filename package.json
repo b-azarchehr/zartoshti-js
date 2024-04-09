@@ -1,27 +1,26 @@
 {
-  "name": "jalaali-js",
+  "name": "zartoshti-js",
   "version": "1.2.6",
   "description": "Converts Gregorian and Jalaali calendars to each other",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jalaali/jalaali-js"
+    "url": "https://github.com/zartoshti/zartoshti-js"
   },
   "keywords": [
-    "jalaali",
-    "jalali",
+    "zartoshti",
     "persian",
     "khorshidi",
-    "shamsi",
+    "mazdyasna",
     "calendar",
     "date"
   ],
-  "author": "Behrang Noruzi Niya",
+  "author": "Bahman Ardeshir Azarchehr",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jalaali/jalaali-js/issues"
+    "url": "https://github.com/zartoshti/zartoshti-js/issues"
   },
-  "homepage": "https://github.com/jalaali/jalaali-js",
+  "homepage": "https://github.com/zartoshti/zartoshti-js",
   "devDependencies": {
     "browserify": "^17.0.0",
     "mocha": "^9.2.2",

@@ -1,17 +1,16 @@
 {
-  "name": "jalaali-js",
+  "name": "zartoshti-js",
   "version": "1.1.0",
-  "description": "Converts Gregorian and Jalaali calendars to each other",
+  "description": "Converts Gregorian and zartoshti calendars to each other",
   "keywords": [
-    "jalaali",
-    "jalali",
+    "zartoshti",
+    "mazdyasna",
     "persian",
     "khorshidi",
-    "shamsi",
     "calendar",
     "date"
   ],
-  "repository": "jalaali/jalaali-js",
+  "repository": "zartoshti/zartoshti-js",
   "scripts": [
     "index.js"
   ]
