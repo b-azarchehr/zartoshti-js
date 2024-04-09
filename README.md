@@ -1,6 +1,6 @@
 # Zartoshti JavaScript
 
-A few javascript functions for converting Zartoshti (Jalali, Persian, Khayyami, Khorshidi, Shamsi) and Gregorian calendar systems to each other.
+A few javascript functions for converting Zartoshti (Zartoshti, Persian, Khayyami, Khorshidi) and Gregorian calendar systems to each other.
 
 ## Note (Feb 2022)
 
