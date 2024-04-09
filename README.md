@@ -38,7 +38,7 @@ console.log(new Intl.DateTimeFormat('en-US-u-ca-persian', {day: 'numeric'}).form
 // => 1
 ```
 
-> **Notice**: the current implementation of `zartoshti-js` algorithms diverge from the `Intl` API results after the Gregorian year 2256 (or Jalali year 1634) due to different approaches to calculating the leap years. However, this shouldn't affect the usage of the library, as the results are the same from 1800 to 2256. (for more information, see [this comparison](https://runkit.com/sinakhx/625929b1a90c8d0007b539a3))
+> **Notice**: the current implementation of `zartoshti-js` algorithms diverge from the `Intl` API results after the Gregorian year 2256 (or Zartoshti year 8814) due to different approaches to calculating the leap years. However, this shouldn't affect the usage of the library, as the results are the same from 1800 to 2256. (for more information, see [this comparison](https://runkit.com/sinakhx/625929b1a90c8d0007b539a3))
 
 ## About
 
@@ -93,7 +93,7 @@ Or use a CDN:
 Converts a Gregorian date to Zartoshti.
 
 ```js
-zartoshti.toZartoshti(2016, 4, 11) // { jy: 1395, jm: 1, jd: 23 }
+zartoshti.toZartoshti(2016, 4, 11) // { zy: 8575, zm: 1, zd: 23 }
 ```
 
 ### toZartoshti(date)
@@ -101,71 +101,71 @@ zartoshti.toZartoshti(2016, 4, 11) // { jy: 1395, jm: 1, jd: 23 }
 Converts a JavaScript Date object to Zartoshti.
 
 ```js
-zartoshti.toZartoshti(new Date(2016, 3, 11)) // { jy: 1395, jm: 1, jd: 23 }
+zartoshti.toZartoshti(new Date(2016, 3, 11)) // { zy: 8575, zm: 1, zd: 23 }
 ```
 
-### toGregorian(jy, jm, jd)
+### toGregorian(zy, zm, zd)
 
 Converts a Zartoshti date to Gregorian.
 
 ```js
-zartoshti.toGregorian(1395, 1, 23) // { gy: 2016, gm: 4, gd: 11 }
+zartoshti.toGregorian(8575, 1, 23) // { gy: 2016, gm: 4, gd: 11 }
 ```
 
-### isValidZartoshtiDate(jy, jm, jd)
+### isValidZartoshtiDate(zy, zm, zd)
 
 Checks whether a Zartoshti date is valid or not.
 
 ```js
-zartoshti.isValidZartoshtiDate(1394, 12, 30) // false
-zartoshti.isValidZartoshtiDate(1395, 12, 30) // true
+zartoshti.isValidZartoshtiDate(8574, 12, 30) // false
+zartoshti.isValidZartoshtiDate(8575, 12, 30) // true
 ```
 
-### isLeapZartoshtiYear(jy)
+### isLeapZartoshtiYear(zy)
 
 Is this a leap year or not?
 
 ```js
-zartoshti.isLeapZartoshtiYear(1394) // false
-zartoshti.isLeapZartoshtiYear(1395) // true
+zartoshti.isLeapZartoshtiYear(8574) // false
+zartoshti.isLeapZartoshtiYear(8575) // true
 ```
 
-### zartoshtiMonthLength(jy, jm)
+### zartoshtiMonthLength(zy, zm)
 
 Number of days in a given month in a Zartoshti year.
 
 ```js
-zartoshti.zartoshtiMonthLength(1394, 12) // 29
-zartoshti.zartoshtiMonthLength(1395, 12) // 30
+zartoshti.zartoshtiMonthLength(8574, 12) // 29
+zartoshti.zartoshtiMonthLength(8575, 12) // 30
 ```
 
-### zarCal(jy)
+### zarCal(zy)
 
-This function determines if the Zartoshti (Persian) year is leap (366-day long) or is the common year (365 days), and finds the day in March (Gregorian calendar) of the first day of the Zartoshti year (jy).
+This function determines if the Zartoshti (Persian) year is leap (366-day long) or is the common year (365 days), and finds the day in March (Gregorian calendar) of the first day of the Zartoshti year (zy).
 
 ```js
-zartoshti.jalCal(1390) // { leap: 3, gy: 2011, march: 21 }
-zartoshti.jalCal(1391) // { leap: 0, gy: 2012, march: 20 }
-zartoshti.jalCal(1392) // { leap: 1, gy: 2013, march: 21 }
-zartoshti.jalCal(1393) // { leap: 2, gy: 2014, march: 21 }
-zartoshti.jalCal(1394) // { leap: 3, gy: 2015, march: 21 }
-zartoshti.jalCal(1395) // { leap: 0, gy: 2016, march: 20 }
+zartoshti.zarCal(8570) // { leap: 3, gy: 2011, march: 21 }
+zartoshti.zarCal(8571) // { leap: 0, gy: 2012, march: 20 }
+zartoshti.zarCal(8572) // { leap: 1, gy: 2013, march: 21 }
+zartoshti.zarCal(8573) // { leap: 2, gy: 2014, march: 21 }
+zartoshti.zarCal(8574) // { leap: 3, gy: 2015, march: 21 }
+zartoshti.zarCal(8575) // { leap: 0, gy: 2016, march: 20 }
 ```
 
-### j2d(jy, jm, jd)
+### z2d(zy, zm, zd)
 
 Converts a date of the Zartoshti calendar to the Julian Day number.
 
 ```js
-zartoshti.j2d(1395, 1, 23) // 2457490
+zartoshti.z2d(8575, 1, 23) // 2457490
 ```
 
-### d2j(jdn)
+### d2z(zdn)
 
 Converts the Julian Day number to a date in the Zartoshti calendar.
 
 ```js
-zartoshti.d2j(2457490) // { jy: 1395, jm: 1, jd: 23 }
+zartoshti.d2z(2457490) // { zy: 8575, zm: 1, zd: 23 }
 ```
 
 ### g2d(gy, gm, gd)
@@ -176,28 +176,28 @@ Calculates the Julian Day number from Gregorian or Julian calendar dates. This i
 zartoshti.g2d(2016, 4, 11) // 2457490
 ```
 
-### d2g(jdn)
+### d2g(zdn)
 
-Calculates Gregorian and Julian calendar dates from the Julian Day number (jdn) for the period since jdn=-34839655 (i.e. the year -100100 of both calendars) to some millions years ahead of the present.
+Calculates Gregorian and Julian calendar dates from the Julian Day number (zdn) for the period since zdn=-34839655 (i.e. the year -100100 of both calendars) to some millions years ahead of the present.
 
 ```js
 zartoshti.d2g(2457490) // { gy: 2016, gm: 4, gd: 11 }
 ```
 
-### zartoshtiToDateObject(jy, jm, jd)
+### zartoshtiToDateObject(zy, zm, zd)
 
 Convert Zartoshti calendar date to javascript Date object by giving Zartoshti year, month, and day.
 
 ```js
-zartoshti.zartoshtiToDateObject(1400, 4, 30) // new Date(2021, 6, 21)
+zartoshti.zartoshtiToDateObject(8580, 4, 30) // new Date(2021, 6, 21)
 ```
 
-### zartoshtiWeek(jy, jm, jd)
+### zartoshtiWeek(zy, zm, zd)
 
 Return Saturday and Friday day of current week(week start in Saturday)
 
 ```js
-zartoshti.zartoshtiWeek(1400, 4, 30) // { saturday: { jy: 1400, jm: 4, jd: 26 }, friday: { jy: 1400, jm: 5, jd: 1 } }
+zartoshti.zartoshtiWeek(8580, 4, 30) // { saturday: { zy: 8580, zm: 4, zd: 26 }, friday: { zy: 8580, zm: 5, zd: 1 } }
 ```
 
 ## License
