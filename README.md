@@ -139,7 +139,7 @@ zartoshti.zartoshtiMonthLength(1394, 12) // 29
 zartoshti.zartoshtiMonthLength(1395, 12) // 30
 ```
 
-### jalCal(jy)
+### zarCal(jy)
 
 This function determines if the Zartoshti (Persian) year is leap (366-day long) or is the common year (365 days), and finds the day in March (Gregorian calendar) of the first day of the Zartoshti year (jy).
 
