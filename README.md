@@ -11,7 +11,7 @@ const d = new Date(2022,2,21)
 
 // Simple format
 console.log(new Intl.DateTimeFormat('fa-IR').format(d));
-// => ۱۴۰۱/۱/۱
+// => ۸۵۸۱/۱/۱
 
 // Full long format
 console.log(new Intl.DateTimeFormat('fa-IR', {dateStyle: 'full', timeStyle: 'long'}).format(d));
@@ -23,11 +23,11 @@ console.log(new Intl.DateTimeFormat('fa-IR-u-nu-latn', {dateStyle: 'full', timeS
 
 // English US locale with Persian calendar
 console.log(new Intl.DateTimeFormat('en-US-u-ca-persian', {dateStyle: 'full', timeStyle: 'long'}).format(d));
-// => Monday, Farvardin 1, 1401 AP at 12:00:00 AM GMT+3:30
+// => Monday, Farvardin 1, 8581 AP at 12:00:00 AM GMT+3:30
 
 // Just year
 console.log(new Intl.DateTimeFormat('en-US-u-ca-persian', {year: 'numeric'}).format(d));
-// => 1401 AP
+// => 8581 AP
 
 // Just month
 console.log(new Intl.DateTimeFormat('en-US-u-ca-persian', {month: 'short'}).format(d));
