@@ -1,7 +1,7 @@
 {
   "name": "zartoshti-js",
-  "version": "1.2.6",
-  "description": "Converts Gregorian and Jalaali calendars to each other",
+  "version": "1.0.0",
+  "description": "Converts Gregorian and Zartoshti calendars to each other",
   "main": "index.js",
   "repository": {
     "type": "git",
