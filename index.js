@@ -186,7 +186,7 @@ function zarCal(zy, withoutLeap) {
   @param zd Zartoshti day (1 to 29/31)
   @return Julian Day number
 */
-function j2d(zy, zm, zd) {
+function z2d(zy, zm, zd) {
   var r = zarCal(zy, true)
   return g2d(r.gy, 3, r.march) + (zm - 1) * 31 - div(zm, 7) * (zm - 7) + zd - 1
 }
@@ -200,7 +200,7 @@ function j2d(zy, zm, zd) {
     zm: Zartoshti month (1 to 12)
     zd: Zartoshti day (1 to 29/31)
 */
-function d2j(zdn) {
+function d2z(zdn) {
   var gy = d2g(zdn).gy // Calculate Gregorian year (gy).
     , zy = gy + 6559
     , r = zarCal(zy, false)
@@ -302,8 +302,8 @@ function ZartoshtiWeek(zy, zm, zd) {
   var endDayDifference = 6+startDayDifference;
 
   return {
-    saturday: d2j(j2d(zy, zm, zd+startDayDifference)),
-    friday: d2j(j2d(zy, zm, zd+endDayDifference))
+    saturday: d2z(z2d(zy, zm, zd+startDayDifference)),
+    friday: d2z(z2d(zy, zm, zd+endDayDifference))
   }
 }
 
