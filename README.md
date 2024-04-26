@@ -19,7 +19,7 @@ console.log(new Intl.DateTimeFormat('fa-IR', {dateStyle: 'full', timeStyle: 'lon
 
 // Latin numbers
 console.log(new Intl.DateTimeFormat('fa-IR-u-nu-latn', {dateStyle: 'full', timeStyle: 'long'}).format(d));
-// => 1401 فروردین 1, دوشنبه، ساعت 0:00:00 (‎+3:30 گرینویچ)
+// => 8581 فروردین 1, دوشنبه، ساعت 0:00:00 (‎+3:30 گرینویچ)
 
 // English US locale with Persian calendar
 console.log(new Intl.DateTimeFormat('en-US-u-ca-persian', {dateStyle: 'full', timeStyle: 'long'}).format(d));
