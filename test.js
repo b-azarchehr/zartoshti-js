@@ -3,15 +3,15 @@ var z = require('./index')
 
 describe('toZartoshti', function () {
   it('should convert Gregorian to Zartoshti correctly', function () {
-    j.toZartoshti(1981, 8, 17).should.be.eql({jy: 8540, jm: 5, jd: 26})
-    j.toZartoshti(2013, 1, 10).should.be.eql({jy: 8571, jm: 10, jd: 21})
-    j.toZartoshti(2014, 8, 4).should.be.eql({jy: 8573, jm: 5, jd: 13})
+    j.toZartoshti(1981, 8, 17).should.be.eql({zy: 8540, zm: 5, zd: 26})
+    j.toZartoshti(2013, 1, 10).should.be.eql({zy: 8571, zm: 10, zd: 21})
+    j.toZartoshti(2014, 8, 4).should.be.eql({zy: 8573, zm: 5, zd: 13})
   })
 
   it('should convert Date object to Zartoshti', function () {
-    j.toZartoshti(new Date(1981, 8 - 1, 17)).should.be.eql({jy: 5840, jm: 5, jd: 26})
-    j.toZartoshti(new Date(2013, 1 - 1, 10)).should.be.eql({jy: 8571, jm: 10, jd: 21})
-    j.toZartoshti(new Date(2014, 8 - 1, 4)).should.be.eql({jy: 8573, jm: 5, jd: 13})
+    j.toZartoshti(new Date(1981, 8 - 1, 17)).should.be.eql({zy: 5840, zm: 5, zd: 26})
+    j.toZartoshti(new Date(2013, 1 - 1, 10)).should.be.eql({zy: 8571, zm: 10, zd: 21})
+    j.toZartoshti(new Date(2014, 8 - 1, 4)).should.be.eql({zy: 8573, zm: 5, zd: 13})
   })
 })
 
