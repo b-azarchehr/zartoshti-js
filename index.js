@@ -44,7 +44,7 @@ function toGregorian(zy, zm, zd) {
   Checks whether a Zartoshti date is valid or not.
 */
 function isValidZartoshtiDate(zy, zm, zd) {
-  return  zy >= -61 && zy <= 3177 &&
+  return  zy >= 7119 && zy <= 10357 &&
           zm >= 1 && zm <= 12 &&
           zd >= 1 && zd <= ZartoshtiMonthLength(zy, zm)
 }
@@ -70,7 +70,7 @@ function ZartoshtiMonthLength(zy, zm) {
     This function determines if the Zartoshti (Persian) year is
     leap (366-day long) or is the common year (365 days)
 
-    @param zy Zartoshti calendar year (-61 to 3177)
+    @param zy Zartoshti calendar year (7119 to 10357)
     @returns number of years since the last leap year (0 to 4)
  */
 function zarCalLeap(zy) {
