@@ -110,7 +110,7 @@ function zarCalLeap(zy) {
   finds the day in March (Gregorian calendar) of the first
   day of the Zartoshti year (zy).
 
-  @param zy Zartoshti calendar year (-61 to 3177)
+  @param zy Zartoshti calendar year (7119 to 10358)
   @param withoutLeap when don't need leap (true or false) default is false
   @return
     leap: number of years since the last leap year (0 to 4)
@@ -304,6 +304,8 @@ function ZartoshtiWeek(zy, zm, zd) {
     friday: d2z(z2d(zy, zm, zd+endDayDifference))
   }
 }
+
+
 
 /**
  * Convert Zartoshti calendar dates to javascript Date object
