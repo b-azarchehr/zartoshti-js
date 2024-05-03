@@ -66,10 +66,7 @@ function isLeapZartoshtiYear(zy) {
   Number of days in a given month in a Zartoshti year.
 */
 function ZartoshtiMonthLength(zy, zm) {
-  if (zm <= 6) return 31
-  if (zm <= 11) return 30
-  if (isLeapZartoshtiYear(zy)) return 30
-  return 29
+  return (zm < 7 ? 31 : (zm < 12) ? 30 : (isLeapZartoshtiYear(zy) ? 30 : 29));
 }
 
 /*
@@ -284,7 +281,7 @@ function d2g(zdn) {
   j = j + div(div(4 * zdn + 183187720, 146097) * 3, 4) * 4 - 3908
   i = div(mod(j, 1461), 4) * 5 + 308
   gd = div(mod(i, 153), 5) + 1
-  gm = mod(div(i, 153), 12) + 1
+  gm = mod(div(i, 153), 12)
   gy = div(j, 1461) - 100100 + div(8 - gm, 6)
   return  { gy: gy
           , gm: gm
