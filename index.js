@@ -14,12 +14,18 @@ module.exports =
   , d2g: d2g
   , ZartoshtiToDateObject: ZartoshtiToDateObject
   , ZartoshtiWeek: ZartoshtiWeek
+  , ZartoshtiDayName: ZartoshtiDayName
+  , ZartoshtiMonthName: ZartoshtiMonthName
   }
 
 /*
   Zartoshti years starting the 33-year rule.
 */
 var breaks =  [ 7119, 7189, 7218, 7379, 7606, 7866, 7936, 7998, 8291, 8361, 8390, 8815, 9240, 9277, 9372, 9442, 9504, 9574, 9636, 10358];
+const ZartoshtiMonthNameArray = ["", "فروردین", "اردیبهشت", "خرداد", "تیر", "امرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسپند"];
+const ZartoshtiDayNameArray = [
+  "", "اورمزد", "بهمن", "اردیبهشت", "شهریور", "سپندارمذ", "خرداد", "امرداد", "دی به آذر", "آذر", "آبان", "خور", "ماه", "تیر", "گوش", "دی به مهر",
+  "مهر", "سروش", "رشن", "فروردین", "بهرام", "رام", "باد", "دی به دین", "دین", "ارد", "اشتاد", "آسمان", "زامیاد", "مهراسپند", "انارام", "دی به اورمزد"];
 
 /*
   Converts a Gregorian date to Zartoshti.
@@ -338,6 +344,14 @@ function ZartoshtiToDateObject(
     s || 0,
     ms || 0
   );
+}
+
+function ZartoshtiMonthName(zm) {
+  return ZartoshtiMonthNameArray[zm];
+}
+
+function ZartoshtiDayName(zd) {
+  return ZartoshtiDayNameArray[zd];
 }
 
 /*
